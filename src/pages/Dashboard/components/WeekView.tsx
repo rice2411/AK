@@ -12,7 +12,9 @@ import {
   ExpandLess as ExpandLessIcon,
 } from "@mui/icons-material";
 import WeeklyStats from "./WeeklyStats";
-import type { WeekData } from "../../types/WeekData";
+import TeamStats from "./TeamStats";
+import type { WeekData } from "../../../types/WeekData";
+import { useTeamStore } from "../../../store/teamStore";
 
 interface WeekViewProps {
   weekData: WeekData;
@@ -20,6 +22,7 @@ interface WeekViewProps {
 
 const WeekView: React.FC<WeekViewProps> = ({ weekData }) => {
   const [expanded, setExpanded] = React.useState(true);
+  const { teamMembers } = useTeamStore();
 
   const handleToggleExpand = () => {
     setExpanded(!expanded);
@@ -45,6 +48,7 @@ const WeekView: React.FC<WeekViewProps> = ({ weekData }) => {
         <Collapse in={expanded}>
           <Box>
             <WeeklyStats weekData={weekData} />
+            <TeamStats tasks={weekData.tasks} teamMembers={teamMembers} />
           </Box>
         </Collapse>
       </CardContent>

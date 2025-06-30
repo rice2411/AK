@@ -6,12 +6,12 @@ import {
   Today as TodayIcon,
 } from "@mui/icons-material";
 import {
-  getWeekLabel,
   getPreviousWeek,
   getNextWeek,
   getWeekStart,
   getWeekEnd,
-} from "../../utils/dateUtils";
+} from "../../../utils/dateUtils";
+import { getWeekLabel } from "../../../utils/taskUtils";
 
 interface WeekNavigationProps {
   currentDate: Date;

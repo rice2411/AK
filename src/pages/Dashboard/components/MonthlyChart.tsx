@@ -18,7 +18,7 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
-import type { Task } from "../../types/Task";
+import type { Task } from "../../../types/Task";
 
 interface YearlyStatsProps {
   tasks: Task[];
@@ -147,7 +147,7 @@ const YearlyStats: React.FC<YearlyStatsProps> = ({ tasks }) => {
                   value === "done" ? "Task đã hoàn thành" : value
                 }
               />
-              <Bar dataKey="done" fill="#4caf50" name="done" stackId="a" />
+              <Bar dataKey="done" fill="#1976D2" name="done" stackId="a" />
             </BarChart>
           </ResponsiveContainer>
         </Box>

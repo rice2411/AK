@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from "react";
-import DashboardPage from "./pages/DashboardPage";
-import TeamPage from "./pages/TeamPage";
-import { CircularProgress, Box, Container, Alert, Typography } from "@mui/material";
+import DashboardPage from "./pages/Dashboard/DashboardPage";
+import TeamPage from "./pages/Team/TeamPage";
+import {
+  CircularProgress,
+  Box,
+  Container,
+  Alert,
+  Typography,
+} from "@mui/material";
 import { TaigaService } from "./services/TaigaService";
 import { config, validateConfig } from "./config/env";
 import { getLocalStorage, setLocalStorage } from "./utils/localStorageUtils";
@@ -46,10 +52,13 @@ function App() {
     const fetchTeamMembers = async () => {
       try {
         const service = await TaigaService.initialize();
-        const userInfos = await Promise.all(teamMembersId.map((id) => service.getUserById(id)));
+        const userInfos = await Promise.all(
+          teamMembersId.map((id) => service.getUserById(id))
+        );
         setTeamMembers(userInfos.filter((u): u is UserInfo => Boolean(u)));
       } catch (err) {
         // Có thể log lỗi nếu cần
+        console.error(err);
       }
     };
     fetchTeamMembers();
@@ -64,7 +73,10 @@ function App() {
         const allTasks = await service.getAllTasks(teamMembersId);
         setTasks(allTasks);
       } catch (err) {
-        setError("Không thể kết nối đến KonyTaiga. Vui lòng kiểm tra lại thông tin đăng nhập.");
+        console.error(err);
+        setError(
+          "Không thể kết nối đến KonyTaiga. Vui lòng kiểm tra lại thông tin đăng nhập."
+        );
       } finally {
         setLoading(false);
       }
@@ -74,9 +86,18 @@ function App() {
 
   if (loading) {
     return (
-      <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center" minHeight="100vh" minWidth="100vw">
+      <Box
+        display="flex"
+        flexDirection="column"
+        justifyContent="center"
+        alignItems="center"
+        minHeight="100vh"
+        minWidth="100vw"
+      >
         <CircularProgress size={60} />
-        <Typography variant="h6" color="black" sx={{ mt: 2 }}>Đang kết nối đến KonyTaiga...</Typography>
+        <Typography variant="h6" color="black" sx={{ mt: 2 }}>
+          Đang kết nối đến KonyTaiga...
+        </Typography>
       </Box>
     );
   }
@@ -84,8 +105,18 @@ function App() {
   if (error) {
     return (
       <Container maxWidth={false} sx={{ mt: 4 }}>
-        <Box display="flex" justifyContent="center" alignItems="center" flexDirection="column" gap={2} minHeight="100vh" minWidth="100vw">
-          <Alert severity="error" sx={{ maxWidth: 600 }}>{error}</Alert>
+        <Box
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          flexDirection="column"
+          gap={2}
+          minHeight="100vh"
+          minWidth="100vw"
+        >
+          <Alert severity="error" sx={{ maxWidth: 600 }}>
+            {error}
+          </Alert>
         </Box>
       </Container>
     );
@@ -94,7 +125,15 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route element={<MainLayout collapsed={collapsed} setCollapsed={setCollapsed} userInfo={userInfo || undefined}  />}>
+        <Route
+          element={
+            <MainLayout
+              collapsed={collapsed}
+              setCollapsed={setCollapsed}
+              userInfo={userInfo || undefined}
+            />
+          }
+        >
           <Route path="/" element={<DashboardPage />} />
           <Route path="/team" element={<TeamPage />} />
         </Route>

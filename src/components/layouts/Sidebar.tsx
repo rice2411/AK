@@ -1,5 +1,16 @@
 import React from "react";
-import { Box, List, ListItemIcon, ListItemText, Divider, Typography, ListItemButton, IconButton } from "@mui/material";
+import {
+  Drawer,
+  useMediaQuery,
+  useTheme,
+  Box,
+  List,
+  ListItemIcon,
+  ListItemText,
+  IconButton,
+  Divider,
+  ListItemButton,
+} from "@mui/material";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import GroupIcon from "@mui/icons-material/Group";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
@@ -10,93 +21,92 @@ export const SIDEBAR_WIDTH = 240;
 export const SIDEBAR_COLLAPSED_WIDTH = 64;
 
 interface SidebarProps {
+  open: boolean; // trạng thái mở/đóng trên mobile
+  onClose: () => void; // hàm đóng trên mobile
   collapsed: boolean;
   onToggle: () => void;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => (
-  <Box
-    sx={{
-      width: collapsed ? SIDEBAR_COLLAPSED_WIDTH : SIDEBAR_WIDTH,
-      height: "100vh",
-      background: "#fff",
-      borderRight: "1px solid #e0e0e0",
-      p: 2,
-      zIndex: 999999,
-      display: "flex",
-      flexDirection: "column",
-      color: '#222',
-      alignItems: collapsed ? 'center' : 'flex-start',
-      position: 'fixed',
-      left: 0,
-      top: 0,
-      transition: 'width 0.3s cubic-bezier(0.4, 0, 0.2, 1), align-items 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-    }}
-  >
-    <Box sx={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: collapsed ? 'center' : 'space-between', mb: 2 }}>
-      {!collapsed && (
-        <Typography variant="h6" sx={{ fontWeight: 700, color: "#1976d2" }}>
-          AK Tracking
-        </Typography>
-      )}
-      <IconButton size="small" onClick={onToggle} sx={{ ml: collapsed ? 0 : 1 }}>
-        {collapsed ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-      </IconButton>
-    </Box>
-    <List sx={{ width: '100%' }}>
-      <ListItemButton
-        component={Link}
-        to="/"
-        sx={{ justifyContent: collapsed ? 'center' : 'flex-start', px: collapsed ? 1 : 2, transition: 'padding 0.3s, justify-content 0.3s' }}
-      >
-        <ListItemIcon sx={{ minWidth: 0, mr: collapsed ? 0 : 2, justifyContent: 'center', transition: 'margin 0.3s' }}>
-          <DashboardIcon color="primary" />
-        </ListItemIcon>
-        <Box
-          sx={{
-            overflow: 'hidden',
-            transition: 'width 0.3s, opacity 0.3s',
-            width: collapsed ? 0 : 'auto',
-            opacity: collapsed ? 0 : 1,
-            whiteSpace: 'nowrap',
-            display: 'flex',
-            alignItems: 'center',
-          }}
-        >
-          <ListItemText primary="Thống kê" />
-        </Box>
-      </ListItemButton>
-      <ListItemButton
-        component={Link}
-        to="/team"
-        sx={{ justifyContent: collapsed ? 'center' : 'flex-start', px: collapsed ? 1 : 2, transition: 'padding 0.3s, justify-content 0.3s' }}
-      >
-        <ListItemIcon sx={{ minWidth: 0, mr: collapsed ? 0 : 2, justifyContent: 'center', transition: 'margin 0.3s' }}>
-          <GroupIcon color="primary" />
-        </ListItemIcon>
-        <Box
-          sx={{
-            overflow: 'hidden',
-            transition: 'width 0.3s, opacity 0.3s',
-            width: collapsed ? 0 : 'auto',
-            opacity: collapsed ? 0 : 1,
-            whiteSpace: 'nowrap',
-            display: 'flex',
-            alignItems: 'center',
-          }}
-        >
-          <ListItemText primary="Team" />
-        </Box>
-      </ListItemButton>
-    </List>
-    <Divider sx={{ my: 2, width: '100%' }} />
-    <Box sx={{ flexGrow: 1 }} />
-    {!collapsed && (
-      <Typography variant="body2" color="#222" align="center">
-        © 2024 Rikkeisoft
-      </Typography>
-    )}
-  </Box>
-);
+const Sidebar: React.FC<SidebarProps> = ({
+  open,
+  onClose,
+  collapsed,
+  onToggle,
+}) => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
-export default Sidebar; 
+  const drawerContent = (
+    <Box
+      sx={{
+        width: collapsed ? SIDEBAR_COLLAPSED_WIDTH : SIDEBAR_WIDTH,
+        p: 2,
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+      }}
+    >
+      <Box
+        display="flex"
+        alignItems="center"
+        justifyContent={collapsed ? "center" : "space-between"}
+        mb={2}
+      >
+        {!collapsed && (
+          <Box sx={{ fontWeight: 700, color: "#1976d2" }}>AK Tracking</Box>
+        )}
+        <IconButton size="small" onClick={onToggle}>
+          {collapsed ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+        </IconButton>
+      </Box>
+      <List>
+        <ListItemButton component={Link} to="/">
+          <ListItemIcon>
+            <DashboardIcon color="primary" />
+          </ListItemIcon>
+          {!collapsed && <ListItemText primary="Thống kê" />}
+        </ListItemButton>
+        <ListItemButton component={Link} to="/team">
+          <ListItemIcon>
+            <GroupIcon color="primary" />
+          </ListItemIcon>
+          {!collapsed && <ListItemText primary="Team" />}
+        </ListItemButton>
+      </List>
+      <Divider sx={{ my: 2 }} />
+      <Box sx={{ flexGrow: 1 }} />
+      {!collapsed && (
+        <Box sx={{ textAlign: "center", color: "#222", fontSize: 13, pb: 1 }}>
+          © 2024 Rikkeisoft
+        </Box>
+      )}
+    </Box>
+  );
+
+  return isMobile ? (
+    <Drawer
+      variant="temporary"
+      open={open}
+      onClose={onClose}
+      ModalProps={{ keepMounted: true }}
+      PaperProps={{ sx: { width: SIDEBAR_WIDTH } }}
+    >
+      {drawerContent}
+    </Drawer>
+  ) : (
+    <Drawer
+      variant="permanent"
+      open
+      PaperProps={{
+        sx: {
+          width: collapsed ? SIDEBAR_COLLAPSED_WIDTH : SIDEBAR_WIDTH,
+          transition: "width 0.2s cubic-bezier(0.4,0,0.2,1)",
+        },
+      }}
+    >
+      {drawerContent}
+    </Drawer>
+  );
+};
+
+export default Sidebar;

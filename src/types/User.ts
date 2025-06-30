@@ -6,4 +6,5 @@ export interface UserInfo {
   full_name_display: string;
   auth_token: string;
   photo?: string;
+  date_joined?: string;
 }
