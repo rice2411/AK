@@ -9,16 +9,7 @@ export const config = {
 
   // Team Members
   team: {
-    members: [
-      {
-        id: parseInt(import.meta.env.VITE_TEAM_MEMBER_1_ID || "185"),
-        name: import.meta.env.VITE_TEAM_MEMBER_1_NAME || "PhucLH",
-      },
-      {
-        id: parseInt(import.meta.env.VITE_TEAM_MEMBER_2_ID || "193"),
-        name: import.meta.env.VITE_TEAM_MEMBER_2_NAME || "AnVV",
-      },
-    ],
+    members: [185, 193],
   },
 };
 

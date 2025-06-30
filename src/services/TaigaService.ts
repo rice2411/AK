@@ -334,6 +334,29 @@ export class TaigaService {
     };
   }
 
+  // Lấy thông tin user theo id
+  async getUserById(userId: number): Promise<UserInfo | null> {
+    try {
+      if (!this.authToken) {
+        throw new Error("Chưa đăng nhập");
+      }
+      const response = await this.client.get(`/api/v1/users/${userId}`);
+      const user = response.data;
+      return {
+        id: user.id,
+        username: user.username,
+        email: user.email,
+        full_name: user.full_name,
+        full_name_display: user.full_name_display,
+        auth_token: this.authToken || '',
+        photo: user.photo,
+      };
+    } catch (error) {
+      console.error(`Lỗi lấy thông tin user id ${userId}:`, error);
+      return null;
+    }
+  }
+
   // Khởi tạo service với đăng nhập tự động
   static async initialize(): Promise<TaigaService> {
     const service = new TaigaService({

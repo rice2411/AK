@@ -7,17 +7,12 @@ import {
   Avatar,
   Chip,
 } from "@mui/material";
-import type { Task } from "../types/Task";
-
-interface TeamMember {
-  id: number;
-  name: string;
-  avatar?: string;
-}
+import type { Task } from "../../types/Task";
+import type { UserInfo } from "../../types/User";
 
 interface TeamStatsProps {
   tasks: Task[];
-  teamMembers: TeamMember[];
+  teamMembers: UserInfo[];
 }
 
 const TeamStats: React.FC<TeamStatsProps> = ({ tasks, teamMembers }) => {
@@ -35,7 +30,7 @@ const TeamStats: React.FC<TeamStatsProps> = ({ tasks, teamMembers }) => {
 
       // Kiểm tra theo tên (fallback)
       const member = teamMembers.find((m) => m.id === memberId);
-      if (member && assignedToStr.includes(member.name)) return true;
+      if (member && assignedToStr.includes(member.full_name_display || member.username)) return true;
 
       return false;
     });
@@ -96,15 +91,15 @@ const TeamStats: React.FC<TeamStatsProps> = ({ tasks, teamMembers }) => {
               >
                 <Box display="flex" alignItems="center" mb={2}>
                   <Avatar
-                    src={member.avatar}
-                    alt={member.name}
+                    src={member.photo}
+                    alt={member.full_name_display || member.username}
                     sx={{ width: 48, height: 48, mr: 2 }}
                   >
-                    {member.name.charAt(0).toUpperCase()}
+                    {(member.full_name_display || member.username).charAt(0).toUpperCase()}
                   </Avatar>
                   <Box>
                     <Typography variant="h6" sx={{ fontWeight: 600 }}>
-                      {member.name}
+                      {member.full_name_display || member.username}
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
                       {stats.total} tasks

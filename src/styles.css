@@ -33,7 +33,7 @@ html,
 body {
   background: #f5f6fa !important;
   min-height: 100vh;
-  width: 100vw;
+  width: 100%;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -98,7 +98,7 @@ button:focus-visible {
 
 /* ===== MATERIAL-UI CARD ANIMATIONS ===== */
 .MuiCard-root {
-  transition: all 0.3s ease;
+  /* transition: all 0.3s ease; */
 }
 
 .MuiCard-root:hover {
@@ -107,7 +107,7 @@ button:focus-visible {
 
 /* ===== TASK CARD STYLES ===== */
 .task-card {
-  transition: all 0.2s ease;
+  /* transition: all 0.2s ease; */
 }
 
 .task-card:hover {

@@ -5,12 +5,12 @@ import {
   Schedule as ScheduleIcon,
   CheckCircle as CheckCircleIcon,
 } from "@mui/icons-material";
-import type { Task } from "../types/Task";
+import type { Task } from "../../types/Task";
 import {
   formatDate,
   getStatusColor,
   getPriorityColor,
-} from "../utils/dateUtils";
+} from "../../utils/dateUtils";
 
 interface TaskCardProps {
   task: Task;

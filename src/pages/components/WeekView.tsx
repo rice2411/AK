@@ -12,7 +12,7 @@ import {
   ExpandLess as ExpandLessIcon,
 } from "@mui/icons-material";
 import WeeklyStats from "./WeeklyStats";
-import type { WeekData } from "../types/Task";
+import type { WeekData } from "../../types/WeekData";
 
 interface WeekViewProps {
   weekData: WeekData;

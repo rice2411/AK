@@ -6,8 +6,8 @@ import {
   Box,
   LinearProgress,
 } from "@mui/material";
-import type { WeekData } from "../types/WeekData";
-import { getWeekLabel } from "../utils/dateUtils";
+import type { WeekData } from "../../types/WeekData";
+import { getWeekLabel } from "../../utils/dateUtils";
 
 interface WeeklyStatsProps {
   weekData: WeekData;

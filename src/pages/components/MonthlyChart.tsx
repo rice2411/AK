@@ -18,7 +18,7 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
-import type { Task } from "../types/Task";
+import type { Task } from "../../types/Task";
 
 interface YearlyStatsProps {
   tasks: Task[];

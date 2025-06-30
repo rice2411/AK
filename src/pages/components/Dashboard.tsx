@@ -12,7 +12,7 @@ import {
   Schedule as ScheduleIcon,
   CheckCircle as CheckCircleIcon,
 } from "@mui/icons-material";
-import type { Task } from "../types/Task";
+import type { Task } from "../../types/Task";
 
 interface DashboardProps {
   tasks: Task[];

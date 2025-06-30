@@ -11,7 +11,7 @@ import {
   getNextWeek,
   getWeekStart,
   getWeekEnd,
-} from "../utils/dateUtils";
+} from "../../utils/dateUtils";
 
 interface WeekNavigationProps {
   currentDate: Date;
