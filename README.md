@@ -8,14 +8,15 @@
 
 - **Thống kê tổng quan**: Hiển thị số lượng task theo trạng thái (DONE, MR, In Progress & Incoming)
 - **Tỷ lệ hoàn thành**: Progress bar và phần trăm hoàn thành
-- **Giờ ước tính vs thực tế**: So sánh thời gian dự kiến và thực tế
 - **Phân bố trạng thái**: Chip hiển thị số lượng task theo từng trạng thái
+- **Responsive layout**: Hiển thị tốt trên mobile và desktop
 
 ### 📅 Tracking Theo Tuần
 
 - **Điều hướng tuần**: Nút Previous/Next và "Hôm nay" để chuyển đổi tuần
 - **Thống kê tuần**: Hiển thị chi tiết tasks trong tuần được chọn
 - **Phân loại trạng thái**: Gộp "incoming" và "inprogress" thành "In Progress & Incoming"
+- **Mục tiêu DONE & Đã DONE**: Thay thế phần giờ ước tính/thực tế bằng số task mục tiêu phải DONE và số task thực tế đã DONE trong tuần
 
 ### 📈 Thống Kê Theo Năm
 
@@ -87,7 +88,7 @@ src/
 │   ├── Dashboard.tsx        # Dashboard tổng quan
 │   ├── WeekNavigation.tsx   # Điều hướng tuần
 │   ├── WeekView.tsx         # Hiển thị tasks theo tuần
-│   ├── WeeklyStats.tsx      # Thống kê tuần
+│   ├── WeeklyStats.tsx      # Thống kê tuần (hiển thị Mục tiêu DONE & Đã DONE)
 │   ├── MonthlyChart.tsx     # Chart thống kê theo năm
 │   ├── TeamStats.tsx        # Thống kê team
 │   └── TaskCard.tsx         # Card hiển thị task
@@ -159,7 +160,7 @@ In Coming/New/Ready → incoming
 ### 1. Thống kê đa chiều
 
 - **Dashboard**: Tổng quan toàn bộ
-- **Weekly**: Chi tiết theo tuần
+- **Weekly**: Chi tiết theo tuần (có Mục tiêu DONE & Đã DONE)
 - **Yearly**: So sánh theo năm
 - **Team**: Phân tích theo member
 
@@ -183,7 +184,7 @@ In Coming/New/Ready → incoming
 
 ## 🛠️ Công nghệ sử dụng
 
-- **React 19** - UI framework
+- **React 18** - UI framework
 - **TypeScript** - Type safety
 - **Material-UI (MUI)** - UI components
 - **Recharts** - Chart library

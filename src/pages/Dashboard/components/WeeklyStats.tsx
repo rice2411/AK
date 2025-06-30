@@ -122,10 +122,10 @@ const WeeklyStats: React.FC<WeeklyStatsProps> = ({ weekData }) => {
             sx={{ backgroundColor: "#f5f5f5", borderRadius: 2 }}
           >
             <Typography variant="h6" sx={{ fontWeight: 600 }}>
-              {weekData.totalEstimatedHours}h
+              10
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              Giờ ước tính
+              Mục tiêu DONE
             </Typography>
           </Box>
           <Box
@@ -134,10 +134,10 @@ const WeeklyStats: React.FC<WeeklyStatsProps> = ({ weekData }) => {
             sx={{ backgroundColor: "#f5f5f5", borderRadius: 2 }}
           >
             <Typography variant="h6" sx={{ fontWeight: 600 }}>
-              {weekData.totalActualHours}h
+              {weekData.doneCount}
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              Giờ thực tế
+              Đã DONE
             </Typography>
           </Box>
         </Box>

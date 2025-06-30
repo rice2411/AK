@@ -41,6 +41,8 @@ const Dashboard: React.FC<DashboardProps> = ({ tasks }) => {
   );
   const completionRate = totalTasks > 0 ? (doneTasks / totalTasks) * 100 : 0;
 
+  const targetTasks = 180; // Số task mục tiêu phải DONE, có thể thay đổi hoặc truyền từ props
+
   const getStatusDistribution = () => {
     const statusCounts: { [key: string]: number } = {};
     tasks.forEach((task) => {
