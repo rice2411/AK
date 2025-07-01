@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import DashboardPage from "./pages/Dashboard/DashboardPage";
 import TeamPage from "./pages/Team/TeamPage";
+import AccountPage from "./pages/Docs/AccountPage";
 import {
   CircularProgress,
   Box,
@@ -16,6 +17,7 @@ import { useTaskStore } from "./store/taskStore";
 import { useTeamStore } from "./store/teamStore";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MainLayout from "./layouts/MainLayout";
+import AppsPage from "./pages/Docs/AppsPage";
 
 function App() {
   const [collapsed, setCollapsed] = useState(false);
@@ -136,6 +138,8 @@ function App() {
         >
           <Route path="/" element={<DashboardPage />} />
           <Route path="/team" element={<TeamPage />} />
+          <Route path="/docs/account" element={<AccountPage />} />
+          <Route path="/docs/apps" element={<AppsPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
