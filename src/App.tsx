@@ -19,6 +19,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MainLayout from "./layouts/MainLayout";
 import AppsPage from "./pages/Docs/Tools/ToolsPage";
 import ProjectPage from "./pages/Docs/Tools/ProjectPage";
+import InternalPage from "./pages/Docs/Tools/InternalDocsPage";
 
 function App() {
   const [collapsed, setCollapsed] = useState(false);
@@ -141,7 +142,8 @@ function App() {
           <Route path="/team" element={<TeamPage />} />
           <Route path="/docs/account" element={<AccountPage />} />
           <Route path="/docs/tools" element={<AppsPage />} />
-          <Route path="/docs/project" element={<ProjectPage />} />
+          <Route path="/docs/project" element={<ProjectPage />} />  
+          <Route path="/docs/internal" element={<InternalPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

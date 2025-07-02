@@ -18,13 +18,13 @@ import { projects } from "./data";
 
 const columns = [
   "STT",
-  "Project",
-  "Popularity",
-  "Username",
-  "Password",
-  "Foundry",
-  "Screen Map",
-  "Document",
+  "Tên dự án",
+  "Độ phổ biến",
+  "Tên đăng nhập",
+  "Mật khẩu",
+  "Nền tảng",
+  "Sơ đồ màn hình",
+  "Tài liệu",
 ];
 
 const getPopularityColor = (popularity: number, theme: any) => {

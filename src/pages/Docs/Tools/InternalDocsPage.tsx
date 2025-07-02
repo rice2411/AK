@@ -1,6 +1,7 @@
 import React from "react";
-import { accountList } from "../Tools/data";
 import {
+  Box,
+  Typography,
   Table,
   TableBody,
   TableCell,
@@ -8,29 +9,25 @@ import {
   TableHead,
   TableRow,
   Paper,
-  Typography,
-  Box,
   useTheme,
   useMediaQuery,
+  Link,
 } from "@mui/material";
 
-const columns = [
-  "STT",
-  "Tên",
-  "Email",
-  "Mật khẩu",
-  "Slack",
-  "Git",
-  "Tài khoản Google",
-  "Tham chiếu",
+const docs = [
+  { name: "Quy trình phát triển phần mềm", type: "Quy trình", url: "https://example.com/quy-trinh" },
+  { name: "Hướng dẫn sử dụng Git", type: "Hướng dẫn", url: "https://example.com/git-guide" },
+  { name: "Tài liệu onboarding", type: "Onboarding", url: "https://example.com/onboarding" },
 ];
 
-const AccountPage: React.FC = () => {
+const columns = ["STT", "Tên tài liệu", "Loại tài liệu", "Đường dẫn"];
+
+const InternalDocsPage: React.FC = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
-    <Box sx={{ p: 4, mb: 4 }}>
+    <Box sx={{ mb: 4, p: 4 }}>
       <Typography
         variant={isMobile ? "h5" : "h4"}
         component="h1"
@@ -41,7 +38,7 @@ const AccountPage: React.FC = () => {
           textAlign: { xs: "center", md: "left" },
         }}
       >
-        Danh sách tài khoản
+        Tài liệu nội bộ
       </Typography>
       <TableContainer
         component={Paper}
@@ -73,18 +70,25 @@ const AccountPage: React.FC = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {accountList.map((row, idx) => (
-              <TableRow key={row.email}>
+            {docs.map((doc, idx) => (
+              <TableRow
+                key={doc.name}
+                sx={{
+                  backgroundColor: idx % 2 === 0 ? theme.palette.grey[50] : '#fff',
+                  transition: 'background 0.2s',
+                  '&:hover': {
+                    backgroundColor: theme.palette.action.hover,
+                  },
+                }}
+              >
                 <TableCell align="center">{idx + 1}</TableCell>
-                <TableCell align="center">{row.name}</TableCell>
+                <TableCell align="center">{doc.name}</TableCell>
+                <TableCell align="center">{doc.type}</TableCell>
                 <TableCell align="center">
-                  <a href={`mailto:${row.email}`}>{row.email}</a>
+                  <Link href={doc.url} target="_blank" rel="noopener noreferrer">
+                    {doc.url}
+                  </Link>
                 </TableCell>
-                <TableCell align="center">{row.password}</TableCell>
-                <TableCell align="center">{row.slack}</TableCell>
-                <TableCell align="center">{row.git}</TableCell>
-                <TableCell align="center">{row.googleAccount}</TableCell>
-                <TableCell align="center">{row.ref}</TableCell>
               </TableRow>
             ))}
           </TableBody>
@@ -94,4 +98,4 @@ const AccountPage: React.FC = () => {
   );
 };
 
-export default AccountPage;
+export default InternalDocsPage; 
