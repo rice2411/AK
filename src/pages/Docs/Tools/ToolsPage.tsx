@@ -10,34 +10,7 @@ import {
   useTheme,
   useMediaQuery,
 } from "@mui/material";
-
-const apps = [
-  {
-    name: "Taiga",
-    img: "/taiga.png",
-    url: "https://taiga.io/",
-  },
-  {
-    name: "Gitlab",
-    img: "/gitlab.svg",
-    url: "https://gitlab.com/",
-  },
-  {
-    name: "SmallerVideo",
-    img: "/videoSmaller.svg",
-    url: "https://smaller.video/",
-  },
-  {
-    name: "Slack",
-    img: "/slack.svg",
-    url: "https://slack.com/",
-  },
-  {
-    name: "RecordScreen IO",
-    img: "/recordscreenio.png",
-    url: "https://recordscreen.io/",
-  },
-];
+import { tools } from "./data";
 
 const AppsPage: React.FC = () => {
   const theme = useTheme();
@@ -64,9 +37,9 @@ const AppsPage: React.FC = () => {
           gap: 3,
         }}
       >
-        {apps.map((app) => (
+        {tools.map((tool) => (
           <Card
-            key={app.name}
+            key={tool.name}
             sx={{
               borderRadius: 3,
               boxShadow: 3,
@@ -80,7 +53,7 @@ const AppsPage: React.FC = () => {
           >
             <CardContent>
               <Avatar
-                src={app.img}
+                src={tool.img}
                 sx={{
                   width: 64,
                   height: 64,
@@ -91,17 +64,35 @@ const AppsPage: React.FC = () => {
                 variant="rounded"
               />
               <Typography variant="h6" fontWeight={600} gutterBottom>
-                {app.name}
+                {tool.name}
+              </Typography>
+              <Typography 
+                variant="body2" 
+                color="text.secondary" 
+                sx={{ 
+                  mb: 2,
+                  lineHeight: 1.5,
+                  minHeight: "3em"
+                }}
+              >
+                {tool.description}
               </Typography>
             </CardContent>
             <CardActions sx={{ justifyContent: "center", pb: 2 }}>
               <Button
                 variant="contained"
                 color="primary"
-                href={app.url}
+                href={tool.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                sx={{ borderRadius: 2, fontWeight: 500 }}
+                sx={{ 
+                  borderRadius: 2, 
+                  fontWeight: 500,
+                  "&:hover": {
+                    backgroundColor: theme.palette.primary.dark,
+                    color: "white"
+                  }
+                }}
               >
                 Truy cập
               </Button>

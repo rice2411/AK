@@ -23,7 +23,7 @@ import MenuBookIcon from "@mui/icons-material/MenuBook";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import WorkspacesIcon from "@mui/icons-material/Workspaces";
 import DescriptionIcon from "@mui/icons-material/Description";
-import TerminalIcon from "@mui/icons-material/Terminal";
+import HandymanIcon from "@mui/icons-material/Handyman";
 import { Link } from "react-router-dom";
 import { sidebarItems } from "../../constant/sidebar";
 import type { SidebarItem } from "../../constant/sidebar";
@@ -62,8 +62,8 @@ const Sidebar: React.FC<SidebarProps> = ({
         return <WorkspacesIcon color="primary" />;
       case "Description":
         return <DescriptionIcon color="primary" />;
-      case "Apps":
-        return <TerminalIcon color="primary" />;
+      case "HandymanIcon":
+        return <HandymanIcon color="primary" />;
       default:
         return <DashboardIcon color="primary" />;
     }

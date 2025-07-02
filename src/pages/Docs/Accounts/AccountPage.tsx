@@ -1,5 +1,5 @@
 import React from "react";
-import { accountList } from "./data";
+import { accountList } from "../Tools/data";
 import {
   Table,
   TableBody,

@@ -35,10 +35,10 @@ export const sidebarItems: SidebarItem[] = [
         path: "/docs/account",
       },
       {
-        id: "apps",
-        title: "Ứng dụng",
-        icon: "Apps",
-        path: "/docs/apps",
+        id: "tools",
+        title: "Công cụ",
+        icon: "HandymanIcon",
+        path: "/docs/tools",
       },
       {
         id: "project",
