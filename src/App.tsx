@@ -18,8 +18,8 @@ import { useTeamStore } from "./store/teamStore";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MainLayout from "./layouts/MainLayout";
 import AppsPage from "./pages/Docs/Tools/ToolsPage";
-import ProjectPage from "./pages/Docs/Tools/ProjectPage";
-import InternalPage from "./pages/Docs/Tools/InternalDocsPage";
+import ProjectPage from "./pages/Docs/Project/ProjectPage";
+import InternalPage from "./pages/Docs/InternalDocs/InternalDocsPage";
 
 function App() {
   const [collapsed, setCollapsed] = useState(false);

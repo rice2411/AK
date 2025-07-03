@@ -14,7 +14,7 @@ import {
   useMediaQuery,
   Link,
 } from "@mui/material";
-import { projects } from "./data";
+import { projects } from "../Tools/data";
 
 const columns = [
   "STT",
