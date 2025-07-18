@@ -13,6 +13,7 @@ export interface Task {
   tags: string[];
   estimated_hours?: number;
   actual_hours?: number;
+  assigned_users?: number[];
 }
 
 export const TaskStatus = {

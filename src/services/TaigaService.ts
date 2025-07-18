@@ -321,12 +321,7 @@ export class TaigaService {
       modified_date: userStory.modified_date,
       finished_date: userStory.finished_date,
       due_date: userStory.due_date,
-      assigned_to:
-        userStory.assigned_users
-          ?.map((user: any) => user.full_name_display)
-          .join(", ") ||
-        userStory.assigned_to ||
-        "",
+      assigned_users: userStory.assigned_users,
       project: userStory.project_extra_info?.name || userStory.project || "",
       tags: userStory.tags || [],
       estimated_hours: userStory.total_points || 0,

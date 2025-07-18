@@ -13,21 +13,10 @@ const TeamStats: React.FC<TeamStatsProps> = ({ tasks, teamMembers }) => {
   const getMemberStats = (memberId: number) => {
     const memberTasks = tasks.filter((task) => {
       // Kiểm tra nếu task có assigned_to
-      if (!task.assigned_to) return false;
-
-      // Chuyển đổi assigned_to thành string để so sánh
-      const assignedToStr = String(task.assigned_to);
+      if (!task.assigned_users?.length) return false;
 
       // Kiểm tra theo ID
-      if (assignedToStr.includes(memberId.toString())) return true;
-
-      // Kiểm tra theo tên (fallback)
-      const member = teamMembers.find((m) => m.id === memberId);
-      if (
-        member &&
-        assignedToStr.includes(member.full_name_display || member.username)
-      )
-        return true;
+      if (task.assigned_users.includes(memberId)) return true;
 
       return false;
     });
