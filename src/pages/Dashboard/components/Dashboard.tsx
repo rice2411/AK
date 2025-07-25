@@ -15,6 +15,7 @@ import {
   CheckCircle as CheckCircleIcon,
 } from "@mui/icons-material";
 import type { Task } from "../../../types/Task";
+import { pendingtask } from "../../../constant/pending";
 
 interface DashboardProps {
   tasks: Task[];
@@ -29,8 +30,8 @@ const Dashboard: React.FC<DashboardProps> = ({ tasks }) => {
   const mrTasks = tasks.filter((task) => task.status === "MR").length;
   const inProgressAndIncomingTasks = tasks.filter(
     (task) => task.status === "inprogress" || task.status === "incoming"
-  ).length;
-
+  ).length - pendingtask.length;
+  
   const totalEstimatedHours = tasks.reduce(
     (sum, task) => sum + (task.estimated_hours || 0),
     0
@@ -52,6 +53,11 @@ const Dashboard: React.FC<DashboardProps> = ({ tasks }) => {
   };
 
   const statusDistribution = getStatusDistribution();
+  const statusDistributionWithPending = {
+    ...statusDistribution,
+    incoming: (statusDistribution.incoming || 0) - pendingtask.length,
+    Pending: pendingtask.length,
+  };
 
   return (
     <Box sx={{ mb: 4, px: { xs: 2, sm: 3, md: 0 } }}>
@@ -75,7 +81,7 @@ const Dashboard: React.FC<DashboardProps> = ({ tasks }) => {
           gridTemplateColumns: {
             xs: "1fr",
             sm: "repeat(2, 1fr)",
-            md: "repeat(4, 1fr)",
+            md: "repeat(5, 1fr)", // thêm 1 cột cho pending
           },
           gap: { xs: 2, md: 3 },
           mb: { xs: 3, md: 4 },
@@ -251,6 +257,45 @@ const Dashboard: React.FC<DashboardProps> = ({ tasks }) => {
             </Box>
           </CardContent>
         </Card>
+
+        <Card
+          sx={{
+            height: "100%",
+            backgroundColor: "#ffeaea",
+            minHeight: { xs: "120px", md: "auto" },
+          }}
+        >
+          <CardContent sx={{ p: { xs: 2, md: 3 } }}>
+            <Box
+              display="flex"
+              alignItems="center"
+              justifyContent="space-between"
+              flexDirection={isMobile ? "column" : "row"}
+              textAlign={isMobile ? "center" : "left"}
+            >
+              <Box>
+                <Typography
+                  variant={isMobile ? "h5" : "h4"}
+                  color="error.main"
+                  sx={{ fontWeight: 600, mb: isMobile ? 1 : 0 }}
+                >
+                  {pendingtask.length}
+                </Typography>
+                <Typography
+                  variant="body2"
+                  color="text.secondary"
+                  sx={{ fontSize: { xs: "0.875rem", md: "1rem" } }}
+                >
+                  Pending
+                </Typography>
+              </Box>
+              <ScheduleIcon
+                color="error"
+                sx={{ fontSize: { xs: 32, md: 40 }, mt: isMobile ? 1 : 0 }}
+              />
+            </Box>
+          </CardContent>
+        </Card>
       </Box>
 
       {/* Thống kê chi tiết */}
@@ -345,7 +390,7 @@ const Dashboard: React.FC<DashboardProps> = ({ tasks }) => {
               gap={1}
               justifyContent={isMobile ? "center" : "flex-start"}
             >
-              {Object.entries(statusDistribution).map(([status, count]) => (
+              {Object.entries(statusDistributionWithPending).map(([status, count]) => (
                 <Chip
                   key={status}
                   label={`${status}: ${count}`}

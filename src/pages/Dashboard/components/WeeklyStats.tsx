@@ -8,6 +8,7 @@ import {
 } from "@mui/material";
 import type { WeekData } from "../../../types/WeekData";
 import { getWeekLabel } from "../../../utils/taskUtils";
+import { pendingtask } from "../../../constant/pending";
 
 interface WeeklyStatsProps {
   weekData: WeekData;
@@ -18,6 +19,8 @@ const WeeklyStats: React.FC<WeeklyStatsProps> = ({ weekData }) => {
     weekData.totalTasks > 0
       ? (weekData.completedTasks / weekData.totalTasks) * 100
       : 0;
+
+  const inProgressAndIncomingCount = weekData.inProgressAndIncomingCount - pendingtask.length;
 
   return (
     <Card sx={{ mb: 3, border: "1px solid #e0e0e0" }}>
@@ -32,7 +35,7 @@ const WeeklyStats: React.FC<WeeklyStatsProps> = ({ weekData }) => {
             gridTemplateColumns: {
               xs: "1fr",
               sm: "repeat(2, 1fr)",
-              md: "repeat(3, 1fr)",
+              md: "repeat(4, 1fr)",
             },
             gap: 2,
             mb: 2,
@@ -68,10 +71,22 @@ const WeeklyStats: React.FC<WeeklyStatsProps> = ({ weekData }) => {
               color="warning.main"
               sx={{ fontWeight: 600 }}
             >
-              {weekData.inProgressAndIncomingCount}
+              {inProgressAndIncomingCount}
             </Typography>
             <Typography variant="body2" color="text.secondary">
               In Progress & Incoming
+            </Typography>
+          </Box>
+          <Box textAlign="center">
+            <Typography
+              variant="h4"
+              color="error.main"
+              sx={{ fontWeight: 600 }}
+            >
+              {pendingtask.length}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              Pending
             </Typography>
           </Box>
         </Box>
@@ -122,7 +137,7 @@ const WeeklyStats: React.FC<WeeklyStatsProps> = ({ weekData }) => {
             sx={{ backgroundColor: "#f5f5f5", borderRadius: 2 }}
           >
             <Typography variant="h6" sx={{ fontWeight: 600 }}>
-              10
+              13
             </Typography>
             <Typography variant="body2" color="text.secondary">
               Mục tiêu DONE
@@ -138,6 +153,18 @@ const WeeklyStats: React.FC<WeeklyStatsProps> = ({ weekData }) => {
             </Typography>
             <Typography variant="body2" color="text.secondary">
               Đã DONE
+            </Typography>
+          </Box>
+          <Box
+            textAlign="center"
+            p={2}
+            sx={{ backgroundColor: "#f5f5f5", borderRadius: 2 }}
+          >
+            <Typography variant="h6" sx={{ fontWeight: 600 }}>
+              {pendingtask.length}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              Pending
             </Typography>
           </Box>
         </Box>

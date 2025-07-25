@@ -5,12 +5,10 @@ import {
   Schedule as ScheduleIcon,
   CheckCircle as CheckCircleIcon,
 } from "@mui/icons-material";
-import type { Task } from "../../types/Task";
-import {
-  formatDate,
-  getStatusColor,
-  getPriorityColor,
-} from "../../utils/dateUtils";
+
+import type { Task } from "../../../types/Task";
+import { getPriorityColor, getStatusColor } from "../../../utils/taskUtils";
+import { formatDateTime , formatDate} from "../../../utils/dateUtils";
 
 interface TaskCardProps {
   task: Task;
@@ -115,7 +113,7 @@ const TaskCard: React.FC<TaskCardProps> = ({ task }) => {
           <Box display="flex" alignItems="center" gap={1} mb={1}>
             <ScheduleIcon fontSize="small" color="warning" />
             <Typography variant="body2" color="warning.main">
-              Hạn: {formatDate(task.due_date)}
+              Hạn: {formatDateTime(task.due_date)}
             </Typography>
           </Box>
         )}
