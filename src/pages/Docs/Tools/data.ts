@@ -19,12 +19,12 @@ export const accountList: AccountData[] = [
     ref: "minhtta",
   },
   {
-    name: "Võ Văn An",
-    email: "anvv1@rikkeisoft.com",
-    password: "Rikkei260824#@",
+    name: "Nguyễn Đăng Quang",
+    email: "quangnd3@rikkeisoft.com",
+    password: "Rikkei231023#@",
     slack: "Rikkei231023#@",
     git: "Rikkei231023#@",
-    googleAccount: "Rikkei260824#@",
+    googleAccount: "Rikkei231023#@",
     ref: "nhanht2",
   },
 ];
