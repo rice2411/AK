@@ -15,7 +15,7 @@ import {
   CheckCircle as CheckCircleIcon,
 } from "@mui/icons-material";
 import type { Task } from "../../../types/Task";
-import { pendingtask } from "../../../constant/pending";
+import { PENTDING_TASK_ID } from "../../../constant/pending";
 
 interface DashboardProps {
   tasks: Task[];
@@ -30,7 +30,7 @@ const Dashboard: React.FC<DashboardProps> = ({ tasks }) => {
   const mrTasks = tasks.filter((task) => task.status === "MR").length;
   const inProgressAndIncomingTasks = tasks.filter(
     (task) => task.status === "inprogress" || task.status === "incoming"
-  ).length - pendingtask.length;
+  ).length
   
   const totalEstimatedHours = tasks.reduce(
     (sum, task) => sum + (task.estimated_hours || 0),
@@ -41,8 +41,6 @@ const Dashboard: React.FC<DashboardProps> = ({ tasks }) => {
     0
   );
   const completionRate = totalTasks > 0 ? (doneTasks / totalTasks) * 100 : 0;
-
-  const targetTasks = 180; // Số task mục tiêu phải DONE, có thể thay đổi hoặc truyền từ props
 
   const getStatusDistribution = () => {
     const statusCounts: { [key: string]: number } = {};
@@ -55,8 +53,8 @@ const Dashboard: React.FC<DashboardProps> = ({ tasks }) => {
   const statusDistribution = getStatusDistribution();
   const statusDistributionWithPending = {
     ...statusDistribution,
-    incoming: (statusDistribution.incoming || 0) - pendingtask.length,
-    Pending: pendingtask.length,
+    incoming: (statusDistribution.incoming || 0) ,
+    Pending: PENTDING_TASK_ID.length,
   };
 
   return (
@@ -234,7 +232,7 @@ const Dashboard: React.FC<DashboardProps> = ({ tasks }) => {
                   color="warning.main"
                   sx={{ fontWeight: 600, mb: isMobile ? 1 : 0 }}
                 >
-                  {inProgressAndIncomingTasks}
+                  {inProgressAndIncomingTasks > 3 ? inProgressAndIncomingTasks - PENTDING_TASK_ID.length : 0}
                 </Typography>
                 <Typography
                   variant="body2"
@@ -279,7 +277,7 @@ const Dashboard: React.FC<DashboardProps> = ({ tasks }) => {
                   color="error.main"
                   sx={{ fontWeight: 600, mb: isMobile ? 1 : 0 }}
                 >
-                  {pendingtask.length}
+                  {PENTDING_TASK_ID.length}
                 </Typography>
                 <Typography
                   variant="body2"

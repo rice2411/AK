@@ -8,7 +8,7 @@ import {
 } from "@mui/material";
 import type { WeekData } from "../../../types/WeekData";
 import { getWeekLabel } from "../../../utils/taskUtils";
-import { pendingtask } from "../../../constant/pending";
+import { PENTDING_TASK_ID } from "../../../constant/pending";
 
 interface WeeklyStatsProps {
   weekData: WeekData;
@@ -20,7 +20,7 @@ const WeeklyStats: React.FC<WeeklyStatsProps> = ({ weekData }) => {
       ? (weekData.completedTasks / weekData.totalTasks) * 100
       : 0;
 
-  const inProgressAndIncomingCount = weekData.inProgressAndIncomingCount - pendingtask.length;
+  const inProgressAndIncomingCount = weekData.inProgressAndIncomingCount
 
   return (
     <Card sx={{ mb: 3, border: "1px solid #e0e0e0" }}>
@@ -71,7 +71,7 @@ const WeeklyStats: React.FC<WeeklyStatsProps> = ({ weekData }) => {
               color="warning.main"
               sx={{ fontWeight: 600 }}
             >
-              {inProgressAndIncomingCount}
+              {inProgressAndIncomingCount > PENTDING_TASK_ID.length ? inProgressAndIncomingCount - PENTDING_TASK_ID.length : 0}
             </Typography>
             <Typography variant="body2" color="text.secondary">
               In Progress & Incoming
@@ -83,7 +83,7 @@ const WeeklyStats: React.FC<WeeklyStatsProps> = ({ weekData }) => {
               color="error.main"
               sx={{ fontWeight: 600 }}
             >
-              {pendingtask.length}
+              {PENTDING_TASK_ID.length}
             </Typography>
             <Typography variant="body2" color="text.secondary">
               Pending
@@ -161,7 +161,7 @@ const WeeklyStats: React.FC<WeeklyStatsProps> = ({ weekData }) => {
             sx={{ backgroundColor: "#f5f5f5", borderRadius: 2 }}
           >
             <Typography variant="h6" sx={{ fontWeight: 600 }}>
-              {pendingtask.length}
+              {PENTDING_TASK_ID.length}
             </Typography>
             <Typography variant="body2" color="text.secondary">
               Pending
