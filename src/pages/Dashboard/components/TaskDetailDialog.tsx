@@ -186,16 +186,16 @@ const TaskDetailDialog: React.FC<TaskDetailDialogProps> = ({
                 {
                   memberTasks.filter(
                     (task) =>
-                      task.status === "inprogress" || task.status === "incoming"
+                     !PENTDING_TASK_ID.includes(task.id) && (task.status === "inprogress" || task.status === "incoming")
                   ).length
                 }
-                )
+                ) 
               </Typography>
               <Box sx={{ maxHeight: 200, overflowY: "auto" }}>
                 {memberTasks
                   .filter(
                     (task) =>
-                      task.status === "inprogress" || task.status === "incoming"
+                      !PENTDING_TASK_ID.includes(task.id) && (task.status === "inprogress" || task.status === "incoming")
                   )
                   .map((task) => (
                     <Box
@@ -218,7 +218,7 @@ const TaskDetailDialog: React.FC<TaskDetailDialogProps> = ({
                   ))}
               </Box>
             </Box>
-
+            {/* Cột Pending */}
             <Box>
               <Typography
                 variant="h6"
