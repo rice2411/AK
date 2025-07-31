@@ -55,7 +55,7 @@ const InternalDocsPage: React.FC = () => {
         scrollButtons="auto"
         sx={{ mb: 3, borderBottom: '1px solid #e0e0e0' }}
       >
-        {tabData.map((t, _) => (
+        {tabData.map((t) => (
           <Tab key={t.label} label={t.label} />
         ))}
       </Tabs>
