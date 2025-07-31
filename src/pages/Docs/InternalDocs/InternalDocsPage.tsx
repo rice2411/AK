@@ -2,16 +2,9 @@ import React from "react";
 import {
   Box,
   Typography,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
   Paper,
   useTheme,
   useMediaQuery,
-  Link,
   Tabs,
   Tab,
   List,
@@ -20,7 +13,6 @@ import {
   ListItemText,
   Divider,
 } from "@mui/material";
-import FolderIcon from '@mui/icons-material/Folder';
 import DescriptionIcon from '@mui/icons-material/Description';
 
 const docs = [
@@ -30,8 +22,6 @@ const docs = [
   { name: "File Server", url: "https://rikkeisoft0.sharepoint.com/sites/FileServer/File%20Server/Forms/AllItems.aspx?e=5%3A53f08c926d4343b88cd86e7aaf368063&sharingv2=true&fromShare=true&at=9&CT=1713945267358&OR=OWA%2DNT%2DMail&CID=ff68a068%2D2648%2D9390%2D446d%2D210ac1c19297&FolderCTID=0x012000C08534137A4F7C4DBCC3FA071F36789C&id=%2Fsites%2FFileServer%2FFile%20Server%2FDN3%2FData%20Project%2FT%5FAK%5FDN%2FT%5FAK%5FDN" },
   { name: "Xem bảng xếp hạng", url: "https://integ-prod-flextest.madp.tm.softbank.jp/apps/matching/#_frmLoginLongDH@twinger.vn/Rikkei231023#@" },
 ];
-
-const columns = ["STT", "Tên tài liệu", "Đường dẫn"];
 
 const tabData = [
   { label: 'Tài liệu chung', docs },
