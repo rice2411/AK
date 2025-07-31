@@ -16,7 +16,7 @@ export class TaigaService {
   constructor(config: TaigaConfig) {
     this.config = config;
     this.client = axios.create({
-      baseURL: config.baseUrl,
+      baseURL: this.config.baseUrl,
       headers: {
         "Content-Type": "application/json",
         "x-disable-pagination": "1", // Disable pagination để lấy tất cả data
