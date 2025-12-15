@@ -1,0 +1,5 @@
+{
+  "name": "CountTrack AI",
+  "description": "A smart task counting and habit tracking system powered by Gemini to help you visualize progress and get personalized suggestions.",
+  "requestFramePermissions": []
+}
