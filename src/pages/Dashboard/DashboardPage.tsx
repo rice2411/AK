@@ -4,13 +4,16 @@ import Dashboard from "./components/Dashboard";
 import WeekNavigation from "./components/WeekNavigation";
 import WeekView from "./components/WeekView";
 import YearlyStats from "./components/MonthlyChart";
+import MonthlyRanking from "./components/MonthlyRanking";
 import { getWeekStart, getWeekEnd } from "../../utils/dateUtils";
 import { useTaskStore } from "../../store/taskStore";
 import { getCurrentWeekTasks } from "../../utils/taskUtils";
+import { useTeamStore } from "../../store/teamStore";
 
 const DashboardPage: React.FC = () => {
   const [currentWeek, setCurrentWeek] = useState(new Date());
   const tasks = useTaskStore((state) => state.tasks);
+  const teamMembers = useTeamStore((state) => state.teamMembers);
 
   const handleWeekChange = (newDate: Date) => {
     setCurrentWeek(newDate);
@@ -74,6 +77,7 @@ const DashboardPage: React.FC = () => {
       />
       <WeekView weekData={weekData} />
       <YearlyStats tasks={tasks} />
+      <MonthlyRanking tasks={tasks} teamMembers={teamMembers} />
     </Container>
   );
 };

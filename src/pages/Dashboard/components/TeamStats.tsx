@@ -47,11 +47,13 @@ const TeamStats: React.FC<TeamStatsProps> = ({ tasks, teamMembers }) => {
         task.assigned_users?.includes(member.id) && PENTDING_TASK_ID.includes(task.id)
       );
 
+      const taskWeek = memberTasks.filter((task) =>  new Date(task.created_date) > new Date("2025-11-10") && new Date(task.created_date) < new Date("2025-11-14"));
+      console.log(taskWeek)
       stats[member.id] = {
-        total: memberTasks.length,
-        done: memberTasks.filter((task) => task.status === "DONE").length,
-        mr: memberTasks.filter((task) => task.status === "MR").length,
-        inProgressAndIncoming: memberTasks.filter(
+        total: taskWeek.length,
+        done: taskWeek.filter((task) => task.status === "DONE").length,
+        mr: taskWeek.filter((task) => task.status === "MR").length,
+        inProgressAndIncoming: taskWeek.filter(
           (task) => !PENTDING_TASK_ID.includes(task.id) && (task.status === "inprogress" || task.status === "incoming")
         ).length,
         pending: pendingTasks.length,
@@ -65,6 +67,7 @@ const TeamStats: React.FC<TeamStatsProps> = ({ tasks, teamMembers }) => {
   const getMemberTasks = useMemo(() => {
     return (memberId: number) => {
       return tasks.filter((task) => {
+  
         if (!task.assigned_users?.length) return false;
         return task.assigned_users.includes(memberId);
       });

@@ -9,7 +9,8 @@ export const config = {
 
   // Team Members
   team: {
-    members: [185, 193],
+    members: [185, 193 , 186 , 188, 194, 187, 189, 182 , 180,181, 178, 179],
+    // members: [185, 193],
   },
 };
 
